@@ -1,24 +1,9 @@
-import os
-import requests
-from dotenv import load_dotenv
+import webbrowser
+import urllib.parse
 
-load_dotenv(".env_template_redes.env")
-
-def publicar_en_telegram():
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    chat_id = os.getenv("TELEGRAM_CHAT_ID")
-    if not token or not chat_id:
-        print("\u26a0\ufe0f Faltan credenciales de Telegram")
-        return
-
-    mensaje = (
-        "\ud83d\udcd8 Java Course 2025 disponible en Kindle:\n"
-        + os.getenv("BOOK_URL_ES")
-    )
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
-    response = requests.post(url, data={"chat_id": chat_id, "text": mensaje})
-
-    if response.ok:
-        print("\u2705 Mensaje enviado a Telegram.")
-    else:
-        print("\u274c Error al enviar mensaje:", response.text)
+def publicar_en_telegram_multiple(textos):
+    for texto, url, idioma, imagen_url in textos:
+        mensaje = f"{texto}\n{url}"
+        tg_url = "https://t.me/share/url?url=" + urllib.parse.quote_plus(url) + "&text=" + urllib.parse.quote_plus(texto)
+        print(f"📘 [{idioma}] Compartiendo en Telegram: {texto}")
+        webbrowser.open(tg_url)
