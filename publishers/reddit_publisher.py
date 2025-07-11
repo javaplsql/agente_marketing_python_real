@@ -1,9 +1,10 @@
-import os
 import webbrowser
-from dotenv import load_dotenv
+import urllib.parse
 
-load_dotenv(".env_template_redes.env")
-
-def publicar_en_reddit():
-    print("🔗 Abriendo Reddit para publicación manual...")
-    webbrowser.open("https://www.reddit.com/submit")
+def publicar_en_reddit_multiple(textos):
+    for texto, url, idioma, imagen_url in textos:
+        titulo = urllib.parse.quote_plus(texto)
+        enlace = urllib.parse.quote_plus(url)
+        reddit_url = f"https://www.reddit.com/submit?title={titulo}&url={enlace}"
+        print(f"🔴 [{idioma}] Compartiendo en Reddit: {texto}")
+        webbrowser.open(reddit_url)

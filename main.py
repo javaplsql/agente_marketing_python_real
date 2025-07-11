@@ -1,4 +1,6 @@
 from publishers.twitter_publisher import publicar_en_twitter_multiple_con_idiomas
+from publishers.linkedin_publisher import publicar_en_linkedin_multiple
+from publishers.reddit_publisher import publicar_en_reddit_multiple
 
 def main():
     print("🚀 Iniciando agente de marketing automático...\n")
@@ -44,9 +46,10 @@ def main():
             imagen_java
         ),
     ]
-
+    # Llamadas
     publicar_en_twitter_multiple_con_idiomas(textos_con_idioma)
-
+    publicar_en_linkedin_multiple(textos_con_idioma)
+    publicar_en_reddit_multiple(textos_con_idioma)
     print("\n✅ Proceso completado.")
 
 if __name__ == "__main__":
