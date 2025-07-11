@@ -1,6 +1,12 @@
 # Dependencias necesarias para el agente
-tweepy
 praw
-requests
+requests~=2.32.4
 google-api-python-client
 oauth2client
+python-dotenv~=1.1.0
+tweepy
+selenium~=4.33.0
+pyperclip~=1.9.0
+PyAutoGUI~=0.9.54
+pillow~=11.2.1
+pywinauto~=0.6.9
