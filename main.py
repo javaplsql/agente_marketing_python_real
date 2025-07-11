@@ -6,7 +6,7 @@ from publishers.telegram_publisher import publicar_en_telegram_multiple
 from publishers.gumroad_publisher import publicar_en_gumroad_multiple
 from publishers.tiktok_publisher import publicar_en_tiktok
 from publishers.mastodon_publisher import publicar_en_mastodon_multiple
-
+from publishers.instagram_publisher import publicar_en_instagram_manual
 def main():
     print("🚀 Iniciando agente de marketing automático...\n")
 
@@ -52,15 +52,16 @@ def main():
         ),
     ]
     # Llamadas
-    publicar_en_twitter_multiple_con_idiomas(textos_con_idioma)
-    publicar_en_linkedin_multiple(textos_con_idioma)
-    publicar_en_reddit_multiple(textos_con_idioma)
-    publicar_en_facebook_multiple(textos_con_idioma)
-    publicar_en_telegram_multiple(textos_con_idioma)
-    publicar_en_gumroad_multiple(textos_con_idioma)
-    for t in textos_con_idioma:
-        publicar_en_tiktok(*t)
-    publicar_en_mastodon_multiple(textos_con_idioma)
+    # publicar_en_twitter_multiple_con_idiomas(textos_con_idioma)
+    # publicar_en_linkedin_multiple(textos_con_idioma)
+    # publicar_en_reddit_multiple(textos_con_idioma)
+    # publicar_en_facebook_multiple(textos_con_idioma)
+    # publicar_en_telegram_multiple(textos_con_idioma)
+    # publicar_en_gumroad_multiple(textos_con_idioma)
+    # for t in textos_con_idioma:
+    #     publicar_en_tiktok(*t)
+    # publicar_en_mastodon_multiple(textos_con_idioma)
+    publicar_en_instagram_manual(textos_con_idioma)
     print("\n✅ Proceso completado.")
 
 if __name__ == "__main__":
