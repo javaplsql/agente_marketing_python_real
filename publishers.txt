@@ -1,0 +1,124 @@
+# publisher_twitter.py
+import os
+import webbrowser
+from dotenv import load_dotenv
+
+def publicar_en_twitter():
+    load_dotenv(".env_template_redes")
+
+    texto = (
+        "🇬🇧 Learn Java in real environments! 📘 'Java Course 2025' now on Amazon Kindle.\n"
+        + os.getenv("BOOK_URL_UK") + "\n"
+        + os.getenv("JAVA_IMAGE_URL")
+    )
+
+    url_prellenada = (
+        "https://twitter.com/intent/tweet?text=" + webbrowser.quote(texto)
+    )
+
+    print("🔗 Abriendo publicación en Twitter:", url_prellenada)
+    webbrowser.open(url_prellenada)
+
+# publisher_facebook.py
+import os
+import webbrowser
+from dotenv import load_dotenv
+
+def publicar_en_facebook():
+    load_dotenv(".env_template_redes")
+    url = os.getenv("BOOK_URL_ES")
+    share_url = os.getenv("FACEBOOK_SHARE_URL_TEMPLATE").format(url=url)
+    print("🔗 Abriendo Facebook Share:", share_url)
+    webbrowser.open(share_url)
+
+# publisher_instagram.py
+import os
+from dotenv import load_dotenv
+
+def instrucciones_para_instagram():
+    load_dotenv(".env_template_redes")
+    print("📸 Abre Instagram y publica manualmente con este mensaje:")
+    print("Caption sugerido:")
+    print("Learn Java professionally in 2025! 📘 Kindle Edition now on Amazon.\n")
+    print("Link en bio o usa: " + os.getenv("BOOK_URL_ES"))
+    print("Imagen: " + os.getenv("JAVA_IMAGE_URL"))
+
+# publisher_linkedin.py
+import os
+import webbrowser
+from dotenv import load_dotenv
+
+def publicar_en_linkedin():
+    load_dotenv(".env_template_redes")
+    texto = (
+        "💼 Aprende Java en entornos profesionales. 'Java Course 2025' ya disponible en Kindle.\n"
+        + os.getenv("BOOK_URL_ES")
+    )
+    url = "https://www.linkedin.com/sharing/share-offsite/?url=" + webbrowser.quote(os.getenv("BOOK_URL_ES"))
+    print("🔗 Abriendo publicación en LinkedIn:", url)
+    webbrowser.open(url)
+
+# publisher_telegram.py
+import os
+import requests
+from dotenv import load_dotenv
+
+def publicar_en_telegram():
+    load_dotenv(".env_template_redes")
+    bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+    texto = (
+        "📣 Curso Java 2025 disponible en Amazon Kindle 🇪🇸\n"
+        + os.getenv("BOOK_URL_ES") + "\n"
+        + os.getenv("JAVA_IMAGE_URL")
+    )
+    response = requests.get(
+        f"https://api.telegram.org/bot{bot_token}/sendMessage",
+        params={"chat_id": chat_id, "text": texto}
+    )
+    print("✅ Mensaje enviado a Telegram." if response.ok else f"❌ Error: {response.text}")
+
+# publisher_mastodon.py
+import os
+import requests
+from dotenv import load_dotenv
+
+def publicar_en_mastodon():
+    load_dotenv(".env_template_redes")
+    token = os.getenv("MASTODON_ACCESS_TOKEN")
+    base_url = os.getenv("MASTODON_API_BASE_URL")
+    texto = (
+        "🐘 'Java Course 2025' ya en Kindle. Aprende Java como un profesional.\n"
+        + os.getenv("BOOK_URL_ES") + "\n"
+        + os.getenv("JAVA_IMAGE_URL")
+    )
+    response = requests.post(
+        f"{base_url}/api/v1/statuses",
+        headers={"Authorization": f"Bearer {token}"},
+        data={"status": texto}
+    )
+    print("✅ Publicado en Mastodon." if response.ok else f"❌ Error: {response.text}")
+
+# publisher_reddit.py
+import os
+import webbrowser
+from dotenv import load_dotenv
+
+def publicar_en_reddit():
+    load_dotenv(".env_template_redes")
+    url = os.getenv("BOOK_URL_ES")
+    reddit_url = (
+        f"https://www.reddit.com/submit?url={url}&title=Java%20Course%202025%20-%20Kindle%20Edition"
+    )
+    print("🔗 Abriendo publicación en Reddit:", reddit_url)
+    webbrowser.open(reddit_url)
+
+# publisher_blogger.py
+import os
+import webbrowser
+from dotenv import load_dotenv
+
+def publicar_en_blogger():
+    load_dotenv(".env_template_redes")
+    print("📝 Abriendo Blogger para nueva entrada con sesión en Chrome...")
+    webbrowser.open("https://www.blogger.com/blog/posts/3145312426717478916")
