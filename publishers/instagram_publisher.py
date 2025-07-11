@@ -1,25 +1,10 @@
-import os
-from dotenv import load_dotenv
+from publishers.chrome_mobile_instagram import abrir_instagram_modo_movil  # o donde lo tengas
 
-load_dotenv(".env_template_redes.env")
+def publicar_en_instagram_manual(textos):
+    print("📸 Abriendo Instagram en modo móvil (Chrome)...")
 
-def instrucciones_para_instagram():
-    print("\ud83d\udcf8 Abre Instagram y publica manualmente con este mensaje:")
-    print("Caption sugerido:")
-    print("Learn Java professionally in 2025! \ud83d\udcd8 Kindle Edition now on Amazon.")
-    print("Link: " + os.getenv("BOOK_URL_ES"))
-    print("Imagen: " + os.getenv("JAVA_IMAGE_URL"))
-
-# publisher_linkedin.py
-import os
-import webbrowser
-from urllib.parse import quote
-from dotenv import load_dotenv
-
-load_dotenv(".env_template_redes.env")
-
-def publicar_en_linkedin():
-    url = quote(os.getenv("BOOK_URL_ES"))
-    share_url = f"https://www.linkedin.com/sharing/share-offsite/?url={url}"
-    print("\ud83d\udd17 Abriendo publicación en LinkedIn:", share_url)
-    webbrowser.open(share_url)
+    for texto, url, idioma, imagen_url in textos:
+        print(f"\n🌍 [{idioma}] Prepara esta publicación:")
+        print(f"📝 Texto:\n{texto} {url}")
+        print(f"🖼 Imagen sugerida: {imagen_url}")
+        abrir_instagram_modo_movil()
